@@ -4,7 +4,7 @@ pipelines:
     materials:
       gocd_test: # name of my git
         git: https://github.com/khangphan-tw/spring_gocd_test.git
-        branch: main
+        branch: master
     stages:
       - testing: # name of stage
           clean_workspace: true
