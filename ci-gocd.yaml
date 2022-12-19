@@ -1,9 +1,9 @@
 pipelines:
   test_phase: # name of pipeline
-    group: gocd_test
+    group: spring_gocd_test
     materials:
       gocd_test: # name of my git
-        git:
+        git: https://github.com/khangphan-tw/spring_gocd_test.git
         branch: main
     stages:
       - testing: # name of stage
@@ -19,7 +19,7 @@ pipelines:
                     run_if: passed
   # second pipeline
   run_app:
-    group: gocd_test
+    group: spring_gocd_test
     materials:
       #      gocd_test:
       #        git: https://github.com/khangphan-tw/gocd_test.git
