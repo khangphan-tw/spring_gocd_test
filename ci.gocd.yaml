@@ -12,8 +12,10 @@ pipelines:
             unit_and_integration_test: # name of job
               tasks:
                 - exec:
-                    command: mvn
+                    command: bash
                     arguments:
+                      - "-c"
+                      - "mvn"
                       - "clean"
                       - "test"
                     run_if: passed
@@ -34,7 +36,9 @@ pipelines:
             run:
               tasks:
                 - exec:
-                    command: mvn
+                    command: bash
                     arguments:
+                      - "-c"
+                      - "mvn"
                       - "spring-boot:run"
                     run_if: passed
