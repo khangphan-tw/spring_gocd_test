@@ -26,7 +26,7 @@ pipelines:
       #        branch: main
       myupstream:
         pipeline: test_phase
-        stage: unit_and_integration_test
+        stage: testing
     stages:
       - run_spring_boot_app:
           clean_workspace: true
