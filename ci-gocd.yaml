@@ -1,0 +1,40 @@
+pipelines:
+  test_phase: # name of pipeline
+    group: gocd_test
+    materials:
+      gocd_test: # name of my git
+        git:
+        branch: main
+    stages:
+      - testing: # name of stage
+          clean_workspace: true
+          jobs:
+            unit_and_integration_test: # name of job
+              tasks:
+                - exec:
+                    command: mvn
+                    arguments:
+                      - "clean"
+                      - "test"
+                    run_if: passed
+  # second pipeline
+  run_app:
+    group: gocd_test
+    materials:
+      #      gocd_test:
+      #        git: https://github.com/khangphan-tw/gocd_test.git
+      #        branch: main
+      myupstream:
+        pipeline: test_phase
+        stage: unit_and_integration_test
+    stages:
+      - run_spring_boot_app:
+          clean_workspace: true
+          jobs:
+            run:
+              tasks:
+                - exec:
+                    command: mvn
+                    arguments:
+                      - "spring-boot:run"
+                    run_if: passed
