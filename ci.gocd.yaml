@@ -11,7 +11,7 @@ pipelines:
           jobs:
             unit_test:
               tasks:
-                - exce:
+                - exec:
                     command: mvn
                     arguments:
                       - "clean"
