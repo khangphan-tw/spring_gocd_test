@@ -44,5 +44,7 @@ pipelines:
             run:
               tasks:
                 - exec:
-                    command: mvn org.springframework.boot:spring-boot-maven-plugin:run
+                    command: mvn
+                    arguments:
+                      - "org.springframework.boot:spring-boot-maven-plugin:run"
                     run_if: passed
