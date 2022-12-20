@@ -27,17 +27,6 @@ pipelines:
                       - "install"
                       - "-DskipUnitTests"
                     run_if: passed
-  # second pipeline
-  run_app:
-    group: spring_gocd_test
-    materials:
-      #      gocd_test:
-      #        git: https://github.com/khangphan-tw/gocd_test.git
-      #        branch: main
-      myupstream:
-        pipeline: test_phase
-        stage: testing
-    stages:
       - run_spring_boot_app:
           clean_workspace: true
           jobs:
