@@ -12,7 +12,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringGocdTestApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class HelloControllerIntegrationTest {
+public class HelloControllerIT {
 
     private static String LOCAL_HOST = "http://localhost:";
 

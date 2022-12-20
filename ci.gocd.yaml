@@ -9,13 +9,23 @@ pipelines:
       - testing: # name of stage
           clean_workspace: true
           jobs:
-            unit_and_integration_test: # name of job
+            unit_test:
+              tasks:
+                - exce:
+                    command: mvn
+                    arguments:
+                      - "clean"
+                      - "install"
+                      - "-DskipIntegrationTests"
+                    run_if: passed
+            integration_test: # name of job
               tasks:
                 - exec:
                     command: mvn
                     arguments:
                       - "clean"
-                      - "test"
+                      - "install"
+                      - "-DskipUnitTests"
                     run_if: passed
   # second pipeline
   run_app:
@@ -34,7 +44,5 @@ pipelines:
             run:
               tasks:
                 - exec:
-                    command: mvn
-                    arguments:
-                      - "spring-boot:run"
+                    command: mvn org.springframework.boot:spring-boot-maven-plugin:run
                     run_if: passed

@@ -15,6 +15,10 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
+		<!-- Properties for testing -->
+		<skipTests>false</skipTests>
+		<skipUnitTests>${skipTests}</skipUnitTests>
+		<skipIntegrationTests>${skipTests}</skipIntegrationTests>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -45,7 +49,30 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<!-- config for unit test and integration test -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M7</version>
+				<configuration>
+					<skipTests>${skipUnitTests}</skipTests>
+					<includes>
+						<include>**/*Test.java</include>
+					</includes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>3.0.0-M7</version>
+				<configuration>
+					<includes>
+						<include>**/*IT.java</include>
+					</includes>
+					<skipTests>${skipIntegrationTests}</skipTests>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
-
 </project>
